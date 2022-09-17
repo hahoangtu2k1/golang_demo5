@@ -1,0 +1,4 @@
+make: Entering directory '/home/tu/Desktop/demo/golang_demo5'
+protoc bai1.proto --go_out=plugins=grpc:.
+make: Leaving directory '/home/tu/Desktop/demo/golang_demo5'
+ 

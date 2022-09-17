@@ -1,0 +1,47 @@
+syntax ="proto3";
+
+option go_package ="./demo";
+
+message UserPartner {
+    string id = 11;
+    string UserId = 1;
+    string PartnerId = 3;
+    string AlisasUserId = 5;
+    map<string,int64> Apps = 6;
+    string Phone = 7;
+    int64 Created = 10;
+    int64 UpdatedAt = 12;
+};
+
+message UserPartnerRequest {
+    string user_id = 1;
+    string phone = 2;
+    int64 limit = 3;
+};
+
+message getListRequest{
+    string user_id = 1;
+};
+message getListResponse{
+    UserPartner user = 1;
+};
+message createRequest{
+    UserPartner user = 1;
+};
+message createResponse{
+    int32 statusCode = 1;
+    string message = 2;
+};
+message updateRequest{
+    string user_id = 1;
+    UserPartner newUser = 2;
+};
+message updateResponse{
+    int32 statusCode = 1;
+    string message = 2;
+};
+service ServerUser{
+    rpc List(getListRequest) returns (getListResponse){}
+    rpc Create(createRequest) returns (createResponse){}
+    rpc Update(updateRequest) returns (updateResponse){}
+}
