@@ -5,8 +5,12 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/hahoangtu2k1/b5"
+	"github.com/rs/xid"
 )
-var engine = Connect()
+
+var engine = b5.Connect()
+
 func bai4() {
 	r := mux.NewRouter()
 
@@ -19,7 +23,8 @@ func bai4() {
 }
 
 func Get(w http.ResponseWriter, r *http.Request) {
-	var user []UserPartner
+	var engine = b5.Connect()
+	var user []b5.UserPartner
 	// engine.ShowSQL()
 	err := engine.Table("user_partner").Find(&user)
 	if err != nil {
@@ -31,8 +36,8 @@ func Get(w http.ResponseWriter, r *http.Request) {
 }
 func GetById(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var user UserPartner
-	exist, _ := engine.Table("user_partner").Where("id = ?", id).Exist(&UserPartner{
+	var user b5.UserPartner
+	exist, _ := engine.Table("user_partner").Where("id = ?", id).Exist(&b5.UserPartner{
 		Id: id,
 	})
 	if exist {
@@ -47,11 +52,11 @@ func GetById(w http.ResponseWriter, r *http.Request) {
 }
 
 func Post(w http.ResponseWriter, r *http.Request) {
-	var user = UserPartner{
-		Id:          "4",
-		UserId:      "4",
-		PartnerId:   "4",
-		AliasUserId: "4",
+	var user = b5.UserPartner{
+		Id:          xid.New().String(),
+		UserId:      xid.New().String(),
+		PartnerId:   xid.New().String(),
+		AliasUserId: xid.New().String(),
 		Apps:        map[string]int64{"name": 7},
 		Phone:       "0321456987",
 		Created:     9876254,
@@ -66,8 +71,8 @@ func Post(w http.ResponseWriter, r *http.Request) {
 }
 func DeleteById(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var user UserPartner
-	exist, _ := engine.Table("user_partner").Where("id = ?", id).Exist(&UserPartner{
+	var user b5.UserPartner
+	exist, _ := engine.Table("user_partner").Where("id = ?", id).Exist(&b5.UserPartner{
 		Id: id,
 	})
 	if exist {

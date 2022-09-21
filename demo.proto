@@ -6,11 +6,11 @@ message UserPartner {
     string id = 11;
     string UserId = 1;
     string PartnerId = 3;
-    string AlisasUserId = 5;
+    string AliasUserId = 5;
     map<string,int64> Apps = 6;
     string Phone = 7;
     int64 Created = 10;
-    int64 UpdatedAt = 12;
+    int64 Updated_at = 12;
 };
 
 message UserPartnerRequest {
@@ -20,10 +20,9 @@ message UserPartnerRequest {
 };
 
 message getListRequest{
-    string user_id = 1;
 };
 message getListResponse{
-    UserPartner user = 1;
+    repeated UserPartner user = 1;
 };
 message createRequest{
     UserPartner user = 1;
@@ -33,8 +32,7 @@ message createResponse{
     string message = 2;
 };
 message updateRequest{
-    string user_id = 1;
-    UserPartner newUser = 2;
+    UserPartner newUser = 1;
 };
 message updateResponse{
     int32 statusCode = 1;

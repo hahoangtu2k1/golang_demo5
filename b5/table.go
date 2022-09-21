@@ -1,4 +1,4 @@
-package main
+package b5
 
 type UserPartner struct {
 	Id          string

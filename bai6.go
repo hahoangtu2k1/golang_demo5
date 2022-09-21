@@ -13,13 +13,13 @@ func Bai6(connect *redis.Client, ctx context.Context) {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	val, err := connect.Get(ctx, "demo_key").Result()
 	if err == redis.Nil {
 		fmt.Println("Key doesn't exist!")
 	} else {
 		fmt.Println("Value: ", val)
 	}
-
 	time.Sleep(12 * time.Second)
 
 	val1, err := connect.Get(ctx, "demo_key").Result()
